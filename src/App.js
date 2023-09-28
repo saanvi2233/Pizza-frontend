@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
-import Navigation from "./components/Navigation";
 import SingleProduct from "./pages/SingleProduct";
 import { CartContext } from "./CartContext";
+import Navigation from "./components/Navigation";
 
-// Import the Tailwind CSS stylesheet if needed
+
+
 
 const App = () => {
   const [cart, setCart] = useState({});
@@ -26,10 +27,11 @@ useEffect(() => {
 
 
   return (
-    <div className="bg-black">
+    <div className=" static min-h-screen bg-black">
       <Router>
         <CartContext.Provider value={{ cart, setCart }}>
           <Navigation />
+        
           <Routes>
             <Route path="/" element={<Home />} exact />
             <Route path="/products" element={<Product />} />

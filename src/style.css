@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* styles.css */
+
+/* Your existing CSS styles */
+/* ... */
+
+/* Mobile-specific styling for the image */
+.mobile-image {
+    width: 100%; /* Make the image take the full width on mobile */
+    max-width: 100%; /* Ensure the image doesn't exceed its container width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 3px
+  }
+  
+  /* Additional mobile-specific styles can be added here */
+  
+
+  @media (max-width: 768px) {
+    /* Example: Adjust font size and padding for text on mobile */
+    .text-sm {
+      font-size: 16px;
+      padding: 8px;
+    }
+  
+    .sm:text-base {
+      font-size: 18px;
+    }
+  
+    /* Add more mobile-specific styles as needed */
+  }
+
+  /* Your existing CSS styles */
+/* ... */
+
+/* Add a media query for screens smaller than 640px */
+@media (max-width: 640px) {
+    ul {
+      padding: 0; /* Remove padding on smaller screens */
+    }
+    li {
+      margin-left: 4px; /* Reduce margin between items on smaller screens */
+    }
+    a {
+      font-size: 14px; /* Reduce font size on smaller screens */
+    }
+  }
+  
+

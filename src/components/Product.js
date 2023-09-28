@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 //Receive all props (properties)from pssed in products.js
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
+import '../style.css'; // Replace 'styles.css' with the actual path to your CSS file
+
 const Product = (props) => {
   //to change the style of add when items get added
   const [isAdding, setIsAdding] = useState(false);
@@ -52,20 +54,20 @@ const Product = (props) => {
   return (
     // <Link to='/products/dedfw'>
     <Link to={`/products/${product._id}`}>
-      <div className=" bg-slate-800 text-center rounded-md  -m-8 p-2">
-        <img src={product.image} alt="pizza" />
+      <div className=" text-sm sm:text-base lg:text-lg  xl:text-xl bg-slate-800 text-center rounded-md  -m-8 p-2">
+        <img src={product.image} className="mobile-image" alt="pizza" />
         <div>
-          <h2 className="text-white text-lg font-extralight py-2">
+          <h2 className="text-white mb-3 font-extralight py-2">
             {product.name}
           </h2>
-          <span className="text-white bg-gray-600 py-1 rounded-full text-sm px-4">
+          <span className="text-white bg-gray-600  py-1 rounded-full text-sm px-4">
             {product.size}
           </span>
           <br />
           <br />
         </div>
-        <div className="text-white flex">
-          <span className="flex -m-5px text-white justify-between items-center mt-4">
+        <div className="text-white flex flex-col sm:flex-row">
+          <span className=" -m-5px text-white justify-between items-center mt-4 mb-3">
             ₹{product.price}
           </span>
           <button disabled={isAdding}
@@ -74,7 +76,7 @@ const Product = (props) => {
             }}
             className={`${
               isAdding ? "bg-green-900" : "bg-yellow-700"
-            } py-1 px-3 rounded-lg mx-20  rounded-md'}`}
+            } lg:py-1 px-3  items-center sm:  px-1 py-3 rounded-lg mx-20  rounded-md'}`}
           >
             Add{isAdding ? 'ed' : ''}
           </button>

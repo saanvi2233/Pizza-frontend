@@ -17,7 +17,7 @@ const Cart = () => {
     if(priceFetched){
       return;
     }
-    fetch("/api/products/cart-items", {
+    fetch("https://restapipizza1.onrender.com/api/products/cart-items", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,50 +85,52 @@ const Cart = () => {
   return (
 
 products.length?
-    <div className="container mx-auto lg:w-1/2 w-full pb-24 text-red-700">
+<div className="w-full sm:w-1/2 lg:w-1/2 xl:w-1/6 container mx-auto pb-8 sm:pb-24 text-red-700">
+<h1 className="my-6 mx-6 sm:my-12 font-bold text-xl sm:text-2xl ">Cart items</h1>
+<ul>
+  {products.map((product) => {
+    return (
+      <li className="mb-6 sm:mb-12" key={product._id}>
+        <div className="flex flex-col sm:flex-row items-center justify-between">
+          <div className="mb-4 sm:mb-0 sm:mr-4">
+            <img className="w-24 sm:w-32 lg:w-48 h-24" src={product.image} alt="/" />
+          </div>
+          <div className="flex-grow">
+            <span className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold mb-2 sm:mb-0 text-white">
+              {product.name}
+            </span>
+          </div>
+          <div className="mb-4 sm:mb-0 mt-3">
+            <button onClick={() => decrement(product._id)} className="bg-yellow-600 text-blue-950 px-2 py-1 rounded-md leading-none">
+              -
+            </button>
+            <b className="px-4">{getQuantity(product._id)}</b>
+            <button onClick={() => increment(product._id)} className="bg-yellow-600 text-blue-950 px-2 py-1 rounded-md leading-none">
+              +
+            </button>
+          </div>
+          <span className="text-right sm:text-left sm:mb-0 ml-4">₹{getSum(product._id, product.price)}</span>
+        </div>
+        <div className="text-center sm:text-right">
+          <button onClick={() => handleDelete(product._id)} className="bg-red-500 px-2 py-1 rounded-lg leading-10 text-yellow-100 mt-3 sm:mt-0">
+            Delete
+          </button>
+        </div>
+      </li>
+    );
+  })}
+</ul>
+<hr className="my-4 sm:my-6"></hr>
+<div className="text-blue-700 text-center sm:text-right">
+  <b>Grand Total: ₹{total}</b>
+</div>
+<div className="text-center sm:text-right mt-4">
+  <button onClick={handleOrderNow} className="bg-blue-800 px-3 py-2 rounded-sm leading-none">
+    Order Now!
+  </button>
+</div>
+</div>
 
-      <h1 className="my-12 font-bold text-2xl">Cart items</h1>
-      <ul>
-        {products.map((product) => {
-          return (
-            <li className="mb-12" key={product._id}>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div>
-                    <img className="h-16" src={product.image} alt="/" />
-                  </div>
-                  <span className="font-bold ml-4 w-48  text-white">
-                    {product.name}
-                  </span>
-                </div>
-                <div>
-                  <button onClick={()=>{decrement(product._id)}} className="bg-yellow-600 text-blue-950 px-2 py-1 rounded-md leading-none">
-                    -
-                  </button>
-                  <b className="px-4">{getQuantity(product._id)}</b>
-                  <button onClick={()=>{increment(product._id)}} className="bg-yellow-600  text-blue-950 px-2 py-1 rounded-md leading-none">
-                    +
-                  </button>
-                </div>
-                <span>₹{getSum(product._id,product.price)}</span>
-                <button onClick={()=>{ handleDelete(product._id)}} className="bg-red-500 px-2 py-1 rounded-lg leading-10 text-yellow-100">
-                  Delete
-                </button>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      <hr className="my-6"></hr>
-      <div className="text-blue-700 text-right">
-        <b> Grand Total:₹ {total}</b>
-      </div>
-      <div className="text-right mt-6">
-        <button onClick={handleOrderNow} className="bg-blue-800 px-3 py-2 rounded-sm leading-none">
-          Order Now!
-        </button>
-      </div>
-    </div>
 :
 <img className="mx-auto w-1/2 mt-12 " src="images/empty-cart.png" alt="empty" />
 
